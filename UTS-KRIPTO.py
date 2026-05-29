@@ -90,14 +90,14 @@ def registrasi():
     save_users(users)
 
     # ── Tampilkan Hasil ───────────────────────────
-    print("\n  ✅ Registrasi Berhasil!")
+    print("\n   Registrasi Berhasil!")
     print("-"*55)
     print(f"  Username       : {username}")
     print(f"  Password Asli  : {password}")
     print(f"  Hash MD5       : {md5_hash}")
     print(f"  Hash SHA-256   : {sha256_hash}")
     print("-"*55)
-    print("  ⚠️  Password asli TIDAK disimpan di sistem.")
+    print("    Password asli TIDAK disimpan di sistem.")
     print("="*55)
 
 # ════════════════════════════════════════════════
@@ -124,7 +124,7 @@ def login():
 
     # ── Cek username ──────────────────────────────
     if username not in users:
-        print("\n  ❌ Login GAGAL: Username tidak ditemukan.")
+        print("\n   Login GAGAL: Username tidak ditemukan.")
         print("="*55)
         return
 
@@ -136,24 +136,24 @@ def login():
     stored_sha256 = users[username]["hash_sha256"]
 
     # ── Verifikasi ────────────────────────────────
-    print("\n  🔍 Proses Verifikasi Login:")
+    print("\n   Proses Verifikasi Login:")
     print("-"*55)
     print(f"  Password Input    : {password}")
     print(f"  Hash MD5 Input    : {input_md5}")
     print(f"  Hash MD5 Tersimpan: {stored_md5}")
-    md5_match = "✅ COCOK" if input_md5 == stored_md5 else "❌ TIDAK COCOK"
+    md5_match = " COCOK" if input_md5 == stored_md5 else " TIDAK COCOK"
     print(f"  Hasil MD5         : {md5_match}")
     print()
     print(f"  Hash SHA256 Input    : {input_sha256}")
     print(f"  Hash SHA256 Tersimpan: {stored_sha256}")
-    sha_match = "✅ COCOK" if input_sha256 == stored_sha256 else "❌ TIDAK COCOK"
+    sha_match = " COCOK" if input_sha256 == stored_sha256 else " TIDAK COCOK"
     print(f"  Hasil SHA-256        : {sha_match}")
     print("-"*55)
 
     if input_md5 == stored_md5 and input_sha256 == stored_sha256:
-        print(f"  ✅ LOGIN BERHASIL! Selamat datang, {username}!")
+        print(f"   LOGIN BERHASIL! Selamat datang, {username}!")
     else:
-        print("  ❌ LOGIN GAGAL! Password salah.")
+        print("   LOGIN GAGAL! Password salah.")
     print("="*55)
 
 # ════════════════════════════════════════════════
