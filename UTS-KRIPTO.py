@@ -1,12 +1,10 @@
 """
-================================================
 SISTEM LOGIN SEDERHANA - HASHING PASSWORD
 Materi: MD5 dan SHA-256, Dasar Keamanan Data
-================================================
+
 Algoritma:
 1. Registrasi  → hash password → simpan JSON
 2. Login       → hash input   → bandingkan hash
-================================================
 """
 
 import hashlib
@@ -14,12 +12,10 @@ import json
 import os
 from datetime import datetime
 
-# ── Konfigurasi file penyimpanan ──────────────────
+# Konfigurasi file penyimpanan
 DATA_FILE = "users.json"
 
-# ════════════════════════════════════════════════
 # FUNGSI HASHING
-# ════════════════════════════════════════════════
 
 def hash_md5(password: str) -> str:
     """Menghasilkan hash MD5 dari password."""
@@ -29,9 +25,7 @@ def hash_sha256(password: str) -> str:
     """Menghasilkan hash SHA-256 dari password."""
     return hashlib.sha256(password.encode()).hexdigest()
 
-# ════════════════════════════════════════════════
 # FUNGSI PENYIMPANAN DATA (JSON)
-# ════════════════════════════════════════════════
 
 def load_users() -> dict:
     """Memuat data user dari file JSON."""
@@ -45,9 +39,7 @@ def save_users(users: dict) -> None:
     with open(DATA_FILE, "w") as f:
         json.dump(users, f, indent=4)
 
-# ════════════════════════════════════════════════
 # FUNGSI REGISTRASI
-# ════════════════════════════════════════════════
 
 def registrasi():
     """
@@ -77,11 +69,11 @@ def registrasi():
         print("  [ERROR] Password tidak boleh kosong.")
         return
 
-    # ── Proses Hashing ────────────────────────────
+    # Proses Hashing
     md5_hash    = hash_md5(password)
     sha256_hash = hash_sha256(password)
 
-    # ── Simpan ke JSON (tanpa plaintext) ──────────
+    # Simpan ke JSON (tanpa plaintext)
     users[username] = {
         "hash_md5"    : md5_hash,
         "hash_sha256" : sha256_hash,
@@ -100,9 +92,7 @@ def registrasi():
     print("    Password asli TIDAK disimpan di sistem.")
     print("="*55)
 
-# ════════════════════════════════════════════════
 # FUNGSI LOGIN
-# ════════════════════════════════════════════════
 
 def login():
     """
@@ -122,20 +112,20 @@ def login():
 
     users = load_users()
 
-    # ── Cek username ──────────────────────────────
+    # Cek username
     if username not in users:
         print("\n   Login GAGAL: Username tidak ditemukan.")
         print("="*55)
         return
 
-    # ── Hash password input ───────────────────────
+    # Hash password input
     input_md5    = hash_md5(password)
     input_sha256 = hash_sha256(password)
 
     stored_md5    = users[username]["hash_md5"]
     stored_sha256 = users[username]["hash_sha256"]
 
-    # ── Verifikasi ────────────────────────────────
+    # Verifikasi
     print("\n   Proses Verifikasi Login:")
     print("-"*55)
     print(f"  Password Input    : {password}")
@@ -156,9 +146,7 @@ def login():
         print("   LOGIN GAGAL! Password salah.")
     print("="*55)
 
-# ════════════════════════════════════════════════
 # FUNGSI LIHAT DATA USER (untuk demonstrasi)
-# ════════════════════════════════════════════════
 
 def lihat_data():
     """Menampilkan semua data user yang tersimpan di JSON."""
@@ -176,9 +164,7 @@ def lihat_data():
             print(f"      Terdaftar   : {info['terdaftar']}")
     print("="*55)
 
-# ════════════════════════════════════════════════
 # MENU UTAMA
-# ════════════════════════════════════════════════
 
 def main():
     while True:
