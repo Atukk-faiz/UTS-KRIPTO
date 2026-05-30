@@ -1,11 +1,3 @@
-"""
-SISTEM LOGIN SEDERHANA - HASHING PASSWORD
-Materi: MD5 dan SHA-256, Dasar Keamanan Data
-
-Algoritma:
-1. Registrasi  → hash password → simpan JSON
-2. Login       → hash input   → bandingkan hash
-"""
 
 import hashlib
 import json
@@ -42,14 +34,7 @@ def save_users(users: dict) -> None:
 # FUNGSI REGISTRASI
 
 def registrasi():
-    """
-    Algoritma Registrasi:
-    1. Input username dan password
-    2. Cek apakah username sudah ada
-    3. Hitung hash MD5 dan SHA-256
-    4. Simpan data ke JSON (TANPA plaintext password)
-    5. Tampilkan hasil hash
-    """
+
     print("\n" + "="*55)
     print("           REGISTRASI AKUN BARU")
     print("="*55)
@@ -95,14 +80,7 @@ def registrasi():
 # FUNGSI LOGIN
 
 def login():
-    """
-    Algoritma Login:
-    1. Input username dan password
-    2. Cek apakah username terdaftar
-    3. Hash password yang diinput (MD5 & SHA-256)
-    4. Bandingkan hash dengan hash tersimpan
-    5. Jika cocok → Login berhasil | Jika tidak → Gagal
-    """
+
     print("\n" + "="*55)
     print("              LOGIN PENGGUNA")
     print("="*55)
